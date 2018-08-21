@@ -210,9 +210,12 @@ class SASsessionIOM():
       self._startsas()
 
    def __del__(self):
-      if self.pid:
-         self._endsas()
-      self.pid = None
+      try:
+         if self.pid:
+            self._endsas()
+         self.pid = None
+      except:
+         pass
 
    def _logcnt(self, next=True):
        if next == True:
